@@ -7,19 +7,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https:git/username/"
+    "url": "https://github.com/hell007/gulp-demo.git"
   },
   "keywords": [
     "gulp",
-    "css",
-    "sprite",
+    "css-sprite",
     "md5-js",
+    "imagemin",
     "js"
   ],
   "author": "wzh",
   "license": "ISC",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-less": "^3.0.3",
@@ -32,9 +31,12 @@
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.5.1",
     "gulp-md5-plus": "^0.1.8",
-    "jshint": "^2.9.4",
-    "gulp-imagemin": "^2.0.0",  
+    "gulp-imagemin": "^3.3.0",
+    "gulp-tinypng-nokey": "^1.0.2",
+    "gulp-requirejs-optimize": "^1.2.0",
     "imagemin-pngcrush": "^4.0.0",
-    "gulp-requirejs-optimize": "^1.2.0"  
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "imagemin-optipng": "^5.1.0",
+    "jshint": "^2.9.4"
   }
 }
