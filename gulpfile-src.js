@@ -1,13 +1,14 @@
 
 var gulp = require('gulp'),
     less = require('gulp-less'),
-    minifycss = require('gulp-minify-css'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    jshint = require('gulp-jshint'),
+	minifycss = require('gulp-minify-css'),
+	htmlmin = require('gulp-htmlmin'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify'),
+	rename = require('gulp-rename'),
+	jshint = require('gulp-jshint'),
     clean = require('gulp-clean'),
-    spriter = require('gulp-css-spriter'),
+	spriter = require('gulp-css-spriter'),
     base64 = require('gulp-css-base64'),
     md5 = require('gulp-md5-plus');
 
@@ -37,9 +38,16 @@ gulp.task('copy:slice', function (done) {
 
 //js检测
 gulp.task('jshint',function(){
-    return gulp.src('src/js/**/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+	return gulp.src('src/js/**/*.js')
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'));
+});
+
+//合并html
+gulp.task('minifyhtml', function() {
+  return gulp.src('src/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dist'));
 });
 
 
@@ -64,19 +72,20 @@ gulp.task('sprite', ['copy:slice', 'minifycss'], function (done) {
                 padding: 10
             }
         }))
-        //.pipe(base64())
-        //.pipe(minifycss())
+        .pipe(base64())
+        .pipe(minifycss())
         .pipe(gulp.dest('dist/css'))
         .on('end', done);
 });
+
     
 //合并压缩js
 gulp.task('minifyjs',function(){
-    return gulp.src('src/js/**/*.js')
-        //.pipe(concat('main.js')) //合并
+	return gulp.src('src/js/**/*.js')
+		//.pipe(concat('main.js')) //合并
         //.pipe(rename({suffix:'.min'}))//重命名
-        .pipe(uglify())//压缩
-        .pipe(gulp.dest('dist/js'));//输出
+		.pipe(uglify())//压缩
+		.pipe(gulp.dest('dist/js'));//输出
 });
 
 //将js加上10位md5
@@ -94,7 +103,4 @@ gulp.task('clean', function (done) {
 });
 
 //默认的default任务  gulp
-gulp.task('default',['copy:html', 'copy:iconfont', 'copy:absolute', 'copy:images', 'sprite', 'minifyjs']);
-
-
-
+gulp.task('default',['copy:iconfont', 'copy:absolute', 'copy:images', 'minifyhtml', 'sprite', 'minifyjs']);
