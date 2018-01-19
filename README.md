@@ -1,11 +1,14 @@
 # gulp-demo
 
-雪碧图 gulp-css-sprite
+[雪碧图](./gulpfile-sprite.js) 
 
-base64 gulp-css-base64
+[base64](./gulp-base64.js ) 
 
-图片压缩 gulp-images
+[图片压缩](./gulpfile-image.js)
 
-gulp-amp gulp-cmd 模块
+[amd模块](./gulp-amp.js)
 
-gulp 非覆盖是发布
+[cmd模块](./gulpfile-cmd.js)
+
+[覆盖是发布](./gulp非覆盖是发布.js)
+
