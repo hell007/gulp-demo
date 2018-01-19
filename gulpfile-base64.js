@@ -45,7 +45,7 @@ gulp.task('minifycss',function() {
 
 
 //base64  这里可以把需要base64的图片放在独立文件夹，dist里面可以不用copy
-gulp.task('base64', ['copy:images'], function () {
+gulp.task('base64', ['copy:images','minifycss'], function () {
     return gulp.src('./dist/css/*.css')
         .pipe(base64({
             baseDir: './dist/images',
@@ -55,6 +55,14 @@ gulp.task('base64', ['copy:images'], function () {
             debug: true
         }))
         .pipe(gulp.dest('./dist/css'));
+});
+
+
+//js检测
+gulp.task('jshint',function(){
+    return gulp.src('src/js/**/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
     
@@ -85,5 +93,5 @@ gulp.task('clean', function (done) {
 
 
 //默认的default任务  gulp
-gulp.task('default',['copy:html', 'minifyjs', 'minifycss','base64']);
+gulp.task('default',['copy:html', 'base64', 'minifyjs']);
 
