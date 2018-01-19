@@ -2,7 +2,7 @@
 
 [雪碧图](./gulpfile-sprite.js) 
 
-[base64](./gulp-base64.js ) 
+[base64](./gulpfile-base64.js ) 
 
 [图片压缩](./gulpfile-image.js)
 
