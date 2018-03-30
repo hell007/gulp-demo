@@ -10,7 +10,7 @@ var gulp = require('gulp');
 //引入组件
 var concat = require('gulp-concat'),           //合并
     jshint = require('gulp-jshint'),           //js规范验证
-    uglify = require('gulp-uglify'),           //压缩
+    uglify = require('gulp-uglify'),           //注意：static js使用uglify会报错
     rename = require('gulp-rename'),          //文件名命名
     htmlmin = require('gulp-htmlmin'),
     clean = require('gulp-clean'),
@@ -92,7 +92,6 @@ gulp.task('minifyjs', function () {
                 'underscore'*/
             ]
         }))
-        .pipe(uglify()) //压缩
         .pipe(rev())
         .pipe(gulp.dest('dist/static/js/page/'))
         .pipe(rev.manifest())
@@ -112,7 +111,7 @@ gulp.task('minifyhtml', function () {
         minifyJS: true,//压缩页面JS
         minifyCSS: true//压缩页面CSS
     };
-    gulp.src('dist/**/*.html')
+    gulp.src('dist/*.html')
         .pipe(htmlmin(options))
         .pipe(gulp.dest('dist/'));
 });
@@ -131,7 +130,12 @@ gulp.task('rev',function(){
 //开发下
 gulp.task('devjs', function () {
     gulp.src('./src/static/js/page/*.js')
-        .pipe(uglify()) //压缩
+        .pipe(requirejsOptimize({ //require config
+            mainConfigFile: 'src/static/js/config.js',
+            exclude: [
+                'jquery'
+            ]
+        }))
         .pipe(gulp.dest("dist/static/js/page/")); //输出保存
 });
 
