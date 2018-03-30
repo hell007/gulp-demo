@@ -10,7 +10,7 @@ var gulp = require('gulp');
 //引入组件
 var concat = require('gulp-concat'),           //合并
     jshint = require('gulp-jshint'),           //js规范验证
-    uglify = require('gulp-uglify'),           //注意：static js使用uglify会报错
+    uglify = require('gulp-uglify'),           //压缩
     rename = require('gulp-rename'),          //文件名命名
     htmlmin = require('gulp-htmlmin'),
     clean = require('gulp-clean'),
@@ -111,7 +111,7 @@ gulp.task('minifyhtml', function () {
         minifyJS: true,//压缩页面JS
         minifyCSS: true//压缩页面CSS
     };
-    gulp.src('dist/*.html')
+    gulp.src('dist/**/*.html')
         .pipe(htmlmin(options))
         .pipe(gulp.dest('dist/'));
 });
