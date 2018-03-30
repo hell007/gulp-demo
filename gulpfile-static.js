@@ -154,5 +154,5 @@ gulp.task('default',function(){
 //部署
 gulp.task('build',function(){
     // 设置队列
-    runSequence('clean',['copy:jslib','copy:config','minifyjs','minifycss'],'rev','minifyhtml');
+    runSequence('clean',['copy:jslib','copy:config','minifyjs','minifycss'],'rev');
 });
