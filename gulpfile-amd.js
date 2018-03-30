@@ -131,13 +131,6 @@ gulp.task('rev',function(){
 //开发下
 gulp.task('devjs', function () {
     gulp.src('./src/js/page/*.js')
-        .pipe(requirejsOptimize({ //require config
-            mainConfigFile: 'src/js/config.js',
-            exclude: [
-                'jquery',
-                'underscore'
-            ]
-        }))
         .pipe(uglify()) //压缩
         .pipe(gulp.dest("dist/js/page/")); //输出保存
 });
@@ -149,8 +142,9 @@ gulp.task('devcss',function(){
 
 
 //开发 默认的default任务  gulp
-gulp.task('default',['copy:html','copy:jslib','copy:config','devjs','devcss']);
-
+gulp.task('default',function(){
+    runSequence('clean',['copy:html','copy:jslib','copy:config','devjs','devcss']);
+});
 
 //部署
 gulp.task('build',function(){
