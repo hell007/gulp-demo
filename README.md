@@ -10,5 +10,5 @@
 
 [cmd模块](./gulpfile-cmd.js)
 
-[覆盖是发布](./gulp非覆盖是发布.js)
+[覆盖式发布](./gulp非覆盖是发布.js)
 
