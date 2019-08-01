@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-base64": "^0.1.3",
+    "gulp-sass": "^3.2.1",
+    "gulp-watch-path": "^0.1.0",
+    "stream-combiner2": "^1.1.1"
+  }
+}
